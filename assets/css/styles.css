@@ -1,0 +1,113 @@
+/* =============================
+variables
+============================= */
+:root {
+  --color-brand-main: #15866d;
+  --color-brand-bright: #cefea9;
+  --color-brand-dark: #0b6451;
+
+  --color-text: #031310;
+  --color-offset: #6d7674;
+  --color-text-invert: #ffffff;
+
+  --color-border: #cdd0cf;
+
+  --color-background-main: #ffffff;
+
+  --fontstack-main: "Inter", "Helvetica", "Arial", system-ui, sans-serif;
+}
+
+/* =============================
+fonts
+============================= */
+
+@font-face {
+  font-family: "Inter";
+  src: url(../fonts/inter-variable.woff2) format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* =============================
+html
+============================= */
+
+html {
+  font-weight: 400;
+  font-size: 100%;
+  font-family: "Inter", "Helvetica", "Arial", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+/* =============================
+body
+============================= */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background-main);
+  color: var(--color-text);
+}
+
+/* =============================
+section
+============================= */
+
+/*
+- padding top et bottom (reponsive)
+- peuvent changer de couleur de fond
+- quand deux sections se suivent, border top
+*/
+
+.section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: var(--color-background-main);
+  color: var(--color-text);
+}
+
+.section + .section {
+  border-top: 1px solid var(--color-border);
+}
+
+.section--brand {
+  background-color: var(--color-brand-main);
+  color: var(--color-text-invert);
+}
+
+/* =============================
+container
+============================= */
+
+/*
+- max-width (largeur max)
+- centré dans son parent
+- padding left et right
+*/
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+/* =============================
+images fluides
+============================= */
+
+.fluidimg {
+  /* largeur maximum de 100% du block parent */
+  max-width: 100%;
+  display: block;
+}
+
+/* =============================
+video fluide (iframe youtube)
+============================= */
+
+.fluidvideo {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: none;
+}
