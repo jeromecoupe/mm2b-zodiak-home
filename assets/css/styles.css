@@ -18,6 +18,14 @@ variables
 }
 
 /* =============================
+remove top margins
+============================= */
+
+/*
+@TODO: remove all top margins
+*/
+
+/* =============================
 fonts
 ============================= */
 
@@ -34,8 +42,8 @@ html
 
 html {
   font-weight: 400;
-  font-size: 100%;
-  font-family: "Inter", "Helvetica", "Arial", system-ui, sans-serif;
+  font-size: 100%; /* === 16 pixels dans tous les navigateurs */
+  font-family: var(--fontstack-main);
   line-height: 1.5;
 }
 
@@ -47,6 +55,100 @@ body {
   padding: 0;
   background-color: var(--color-background-main);
   color: var(--color-text);
+}
+
+/* =============================
+header
+============================= */
+
+/*
+- logo et nav: flexbox sur siteheader__content
+- par défaut: flex-direction column / justify-content: flex-start / align-items: stretch
+- au delà de 750px flex-direction row / justify-content: space-between / align-items: center
+
+@TODO: finalize header
+- padding top and bottom
+- logo image as block
+- change size
+*/
+
+.siteheader {
+  padding-top: calc(12 / 16 * 1rem);
+  padding-bottom: calc(12 / 16 * 1rem);
+  background-color: var(--color-brand-main);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media all and (min-width: 750px) {
+  .siteheader__content {
+    padding-top: calc(24 / 16 * 1rem);
+    padding-bottom: calc(24 / 16 * 1rem);
+  }
+}
+
+.siteheader__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  row-gap: 24px;
+}
+
+@media all and (min-width: 750px) {
+  .siteheader__content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 0;
+  }
+}
+
+/* =============================
+mainnav
+============================= */
+
+/*
+- Nav (liste): flexbox sur mainnav
+- par défaut: flex-direction column / justify-content: flex-start / align-items: stretch
+- au delà de 750px flex-direction row / justify-content: flex-end / align-items: center
+*/
+
+.mainnav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  row-gap: 3px;
+}
+
+@media all and (min-width: 750px) {
+  .mainnav {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 30px;
+  }
+}
+
+.mainnav__link {
+  display: block; /* prendre tt la place dans le parent (li) */
+  /* calc: 6 divisé par 16 * 1rem (la taille de texte dans l'élément racine c'est à dire HTML */
+  padding-top: calc(6 / 16 * 1rem);
+  padding-bottom: calc(6 / 16 * 1rem);
+
+  color: var(--color-text-invert);
+  text-decoration: none;
+  font-weight: 500;
+
+  transition: color 0.2s ease-out;
+}
+
+.mainnav__link:hover {
+  color: var(--color-brand-bright);
 }
 
 /* =============================
@@ -66,6 +168,33 @@ section
   color: var(--color-text);
 }
 
+/*
+Media queries.
+Les règles CSS qui sont là dedans n'existent pour un navigateur que si la condition est vraie
+Condition: pour tous les médias, si la largeur minimale du viewport du navigateur est de 750px
+*/
+
+@media all and (min-width: 750px) {
+  .section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .section {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  .section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+}
+
 .section + .section {
   border-top: 1px solid var(--color-border);
 }
@@ -73,6 +202,15 @@ section
 .section--brand {
   background-color: var(--color-brand-main);
   color: var(--color-text-invert);
+}
+
+/* =============================
+bigtitle
+============================= */
+.bigtitle {
+  font-size: clamp(48px, calc(1rem + 9vw), 138px);
+  font-weight: 600;
+  line-height: 1.06;
 }
 
 /* =============================
@@ -90,6 +228,20 @@ container
   margin: 0 auto;
   padding-left: 18px;
   padding-right: 18px;
+}
+
+@media all and (min-width: 750px) {
+  .container {
+    padding-left: 42px;
+    padding-right: 42px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .container {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
 }
 
 /* =============================
