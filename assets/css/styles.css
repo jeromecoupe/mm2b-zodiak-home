@@ -18,14 +18,6 @@ variables
 }
 
 /* =============================
-remove top margins
-============================= */
-
-/*
-@TODO: remove all top margins
-*/
-
-/* =============================
 fonts
 ============================= */
 
@@ -34,6 +26,20 @@ fonts
   src: url(../fonts/inter-variable.woff2) format("woff2-variations");
   font-weight: 100 900;
   font-display: swap;
+}
+
+/* =============================
+remove top margins
+============================= */
+
+/*
+  plus facile de mettre les choses les unes à côté des autres si les éléments n'ont pas leur margin top par défaut (mises par la CSS des navigateurs).
+*/
+
+*,
+*::after,
+*::before {
+  margin-top: 0;
 }
 
 /* =============================
@@ -65,11 +71,6 @@ header
 - logo et nav: flexbox sur siteheader__content
 - par défaut: flex-direction column / justify-content: flex-start / align-items: stretch
 - au delà de 750px flex-direction row / justify-content: space-between / align-items: center
-
-@TODO: finalize header
-- padding top and bottom
-- logo image as block
-- change size
 */
 
 .siteheader {
@@ -79,10 +80,17 @@ header
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-@media all and (min-width: 750px) {
-  .siteheader__content {
+@media all and (min-width: 500px) {
+  .siteheader {
     padding-top: calc(24 / 16 * 1rem);
     padding-bottom: calc(24 / 16 * 1rem);
+  }
+}
+
+@media all and (min-width: 750px) {
+  .siteheader {
+    padding-top: calc(36 / 16 * 1rem);
+    padding-bottom: calc(36 / 16 * 1rem);
   }
 }
 
@@ -97,10 +105,27 @@ header
 @media all and (min-width: 750px) {
   .siteheader__content {
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     row-gap: 0;
   }
+}
+
+/* =============================
+logo
+============================= */
+
+.siteheader__logo {
+  /*
+    ici on est en flex start par défaut. 
+    
+    Dans le contexte d'un flexbox, une margin auto sur un flex item prend tout l'espace disponible. Ici en mettant la margin-right à "auto", tout l'espace disponible dans le flexbox va aller dans cette marge et donc "pousser" la navigation vers la fin du flexbox.
+  */
+  margin: 0 auto 0 0;
+}
+
+.siteheader__logo img {
+  /* par defaut les images sont inline. Elles réservent donc une place sur leur ligne pour les caratères de tesxte descendants (j, g, q, p, etc.). En général on passe les images qui sont seules dans une boite en display: block; pour éviter ce petit espace. */
+  display: block;
 }
 
 /* =============================
@@ -205,6 +230,104 @@ Condition: pour tous les médias, si la largeur minimale du viewport du navigate
 }
 
 /* =============================
+split
+============================= */
+
+/*
+- utilise grid
+- par deéfaut on a une grille d'une seule colonne qui prend une fraction de l'espace disponible
+- à 750px de large, on passe à une grille de deux colonnes
+  - la première prend 1 fraction de l'espace disponible
+  - la seconde prend 2 fractions de l'espace disponible
+*/
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media all and (min-width: 750px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    column-gap: 36px;
+  }
+}
+
+/* =============================
+grid
+============================= */
+
+.grid {
+  /* grille de 1 colonne avec gap de 36px */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 36px;
+
+  /* on supprime les styles de liste par defaut */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.grid--fluid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid--2cols {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid--3cols {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid--4cols {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media all and (min-width: 500px) {
+  .grid--2cols-small {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--3cols-small {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--4cols-small {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media all and (min-width: 750px) {
+  .grid--2cols-medium {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--3cols-medium {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--4cols-medium {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .grid--2cols-large {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--3cols-large {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--4cols-large {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* =============================
 bigtitle
 ============================= */
 .bigtitle {
@@ -241,6 +364,38 @@ container
   .container {
     padding-left: 60px;
     padding-right: 60px;
+  }
+}
+
+/* =============================
+sitefooter
+============================= */
+.sitefooter {
+  background-color: var(--color-brand-main);
+  color: var(--color-text-invert);
+  padding-top: calc(24 / 16 * 1rem);
+  padding-bottom: calc(24 / 16 * 1rem);
+}
+
+.sitefooter__content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 18px;
+}
+
+@media all and (min-width: 750px) {
+  .sitefooter__contact {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+}
+
+@media all and (min-width: 750px) {
+  .sitefooter__main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
   }
 }
 
