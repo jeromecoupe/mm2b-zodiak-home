@@ -33,6 +33,8 @@ remove top margins
 ============================= */
 
 /*
+  Supprimer la ma rgin-top de tous les éléments, de tous les after de et before de n'importe quel élément
+  * en CSS === le sélecteur universel
   plus facile de mettre les choses les unes à côté des autres si les éléments n'ont pas leur margin top par défaut (mises par la CSS des navigateurs).
 */
 
@@ -40,6 +42,14 @@ remove top margins
 *::after,
 *::before {
   margin-top: 0;
+}
+
+/* =============================
+address
+============================= */
+
+address {
+  font-style: normal;
 }
 
 /* =============================
@@ -174,6 +184,32 @@ mainnav
 
 .mainnav__link:hover {
   color: var(--color-brand-bright);
+}
+
+/* =============================
+banner
+============================= */
+.banner {
+  height: 300px;
+}
+
+@media all and (min-width: 750px) {
+  .banner {
+    height: 360px;
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .banner {
+    height: 480px;
+  }
+}
+
+.banner > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
 }
 
 /* =============================
@@ -337,6 +373,53 @@ bigtitle
 }
 
 /* =============================
+projects
+============================= */
+.project {
+  display: block;
+}
+
+.project__link {
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: calc(24 / 16 * 1rem);
+}
+
+.project__media {
+  overflow: hidden;
+}
+
+.project__image {
+  transition: transform 0.2s ease-out;
+}
+
+.project__link:hover .project__image {
+  transform: scale(1.05);
+}
+
+.project__title {
+  font-weight: 600;
+  font-size: calc(22 / 16 * 1rem);
+  color: var(--color-text);
+  margin-bottom: calc(3 / 16 * 1rem);
+}
+
+.project__link:hover .project__title {
+  text-decoration: underline;
+}
+
+.project__tagline {
+  font-weight: 500;
+  font-size: calc(18 / 16 * 1rem);
+  color: var(--color-offset);
+  margin-bottom: 0;
+}
+
+/* =============================
 container
 ============================= */
 
@@ -370,33 +453,153 @@ container
 /* =============================
 sitefooter
 ============================= */
+
 .sitefooter {
   background-color: var(--color-brand-main);
+  padding-top: calc(30 / 16 * 1rem);
   color: var(--color-text-invert);
-  padding-top: calc(24 / 16 * 1rem);
-  padding-bottom: calc(24 / 16 * 1rem);
 }
 
-.sitefooter__content {
+@media all and (min-width: 750px) {
+  .sitefooter {
+    padding-top: calc(60 / 16 * 1rem);
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .sitefooter {
+    padding-top: calc(90 / 16 * 1rem);
+  }
+}
+
+.sitefooter__contact {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 18px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(18 / 16 * 1rem);
+  margin-bottom: calc(30 / 16 * 1rem);
 }
 
 @media all and (min-width: 750px) {
   .sitefooter__contact {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 36px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(36 / 16 * 1rem);
+    margin-bottom: calc(60 / 16 * 1rem);
   }
 }
 
 @media all and (min-width: 750px) {
-  .sitefooter__main {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 36px;
+  .sitefooter__social {
+    justify-self: end;
   }
+}
+
+.sitefooter__main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(18 / 16 * 1rem);
+  margin-bottom: calc(30 / 16 * 1rem);
+}
+
+@media all and (min-width: 750px) {
+  .sitefooter__main {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: calc(36 / 16 * 1rem);
+    margin-bottom: calc(48 / 16 * 1rem);
+  }
+}
+
+.sitefooter__copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding-top: calc(24 / 16 * 1rem);
+  padding-bottom: calc(24 / 16 * 1rem);
+}
+
+/* =============================
+contact links
+============================= */
+
+.contactlinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: calc(6 / 16 * 1rem);
+}
+
+.contactlinks__link {
+  color: var(--color-text-invert);
+  text-decoration: none;
+  font-size: clamp(
+    calc(20 / 16 * 1rem),
+    calc(0.5rem + 2vw),
+    calc(42 / 16 * 1rem)
+  );
+  transition: color 0.2s ease-out;
+}
+
+.contactlinks__link:hover {
+  color: var(--color-brand-bright);
+}
+
+/* =============================
+social media
+============================= */
+
+.socialmedia {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: calc(3 / 16 * 1rem);
+}
+
+.socialmedia__link {
+  color: var(--color-text-invert);
+  transition: color 0.2s ease-out;
+}
+
+.socialmedia__link:hover {
+  color: var(--color-brand-bright);
+}
+
+/* =============================
+footer nav
+============================= */
+
+.footernav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footernav__link {
+  display: block;
+  padding-top: calc(3 / 16 * 1rem);
+  padding-bottom: calc(3 / 16 * 1rem);
+  color: var(--color-text-invert);
+  text-decoration: none;
+}
+
+.footernav__link:hover {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+}
+
+/* =============================
+small title
+============================= */
+
+.smalltitle {
+  font-weight: 500;
+  font-size: calc(18 / 16 * 1rem);
+  font-family: var(--fontstack-main);
+  color: var(--color-offset);
 }
 
 /* =============================
