@@ -386,6 +386,10 @@ page intro
 @media all and (min-width: 750px) {
   .pageintro {
     display: grid;
+    /* 
+    - 1ere colonne fait max 70 caractères
+    - 2eme colonne fait min 20 caractères / max une fraction de l'espace disponible
+     */
     grid-template-columns: minmax(0, 70ch) minmax(20ch, 1fr);
     gap: calc(54 / 16 * 1rem);
   }
