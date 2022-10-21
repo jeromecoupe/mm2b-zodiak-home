@@ -297,7 +297,7 @@ grid
   /* grille de 1 colonne avec gap de 36px */
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 36px;
+  gap: calc(36 / 16 * 1rem);
 
   /* on supprime les styles de liste par defaut */
   list-style: none;
@@ -367,9 +367,28 @@ grid
 bigtitle
 ============================= */
 .bigtitle {
-  font-size: clamp(48px, calc(1rem + 9vw), 138px);
+  font-size: clamp(
+    calc(48 / 16 * 1rem),
+    calc(1rem + 9vw),
+    calc(138 / 16 * 1rem)
+  );
   font-weight: 600;
   line-height: 1.06;
+}
+
+.bigtitle > span {
+  color: var(--color-brand-bright);
+}
+
+/* =============================
+page intro
+============================= */
+@media all and (min-width: 750px) {
+  .pageintro {
+    display: grid;
+    grid-template-columns: minmax(0, 70ch) minmax(20ch, 1fr);
+    gap: calc(54 / 16 * 1rem);
+  }
 }
 
 /* =============================
@@ -448,6 +467,115 @@ container
     padding-left: 60px;
     padding-right: 60px;
   }
+}
+
+/* =============================
+small title
+============================= */
+
+.smalltitle {
+  font-weight: 500;
+  font-size: calc(18 / 16 * 1rem);
+  font-family: var(--fontstack-main);
+  color: var(--color-offset);
+}
+
+/* =============================
+text intro
+============================= */
+
+.txtintro {
+  font-weight: 400;
+  font-size: clamp(
+    calc(28 / 16 * 1rem),
+    calc(1rem + 2vw),
+    calc(37 / 16 * 1rem)
+  );
+  line-height: 1.3;
+}
+
+/* =============================
+services
+============================= */
+
+.service {
+  margin-block-end: 1.5rem;
+}
+
+.service__title {
+  font-weight: 500;
+  font-size: calc(22 / 16 * 1rem);
+  /* em: unité relative à la taille de police de l'élément lui-même.
+         1em == la taille d'un caractère "x" pour l'élément */
+  margin-block-end: 0.5em;
+}
+
+.service__text {
+  color: var(--color-offset);
+}
+
+/* =============================
+morelink
+============================= */
+
+.morelink {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+
+  color: var(--color-brand-dark);
+  text-transform: uppercase;
+  text-decoration: none;
+
+  font-weight: 550;
+  font-size: 1rem;
+
+  padding-block: calc(3 / 16 * 1rem);
+  border-block-end: 2px solid var(--color-brand-dark);
+}
+
+.morelink > svg {
+  transition: transform 0.2s ease-out;
+}
+
+.morelink:hover > svg {
+  transform: translate3d(3px, 0, 0);
+}
+
+.morelink--invert {
+  color: var(--color-text-invert);
+  border-color: var(--color-text-invert);
+}
+
+/* =============================
+listv
+============================= */
+
+.listv {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================
+utilities margins
+============================= */
+.margin-b-none {
+  margin-bottom: 0 !important;
+}
+
+.margin-b-s {
+  margin-bottom: calc(18 / 16 * 1rem) !important;
+}
+
+.margin-b-m {
+  margin-bottom: calc(24 / 16 * 1rem) !important;
+}
+
+.margin-b-l {
+  margin-bottom: calc(36 / 16 * 1rem) !important;
 }
 
 /* =============================
@@ -589,17 +717,6 @@ footer nav
 .footernav__link:hover {
   text-decoration: underline;
   text-decoration-color: rgba(255, 255, 255, 0.3);
-}
-
-/* =============================
-small title
-============================= */
-
-.smalltitle {
-  font-weight: 500;
-  font-size: calc(18 / 16 * 1rem);
-  font-family: var(--fontstack-main);
-  color: var(--color-offset);
 }
 
 /* =============================
