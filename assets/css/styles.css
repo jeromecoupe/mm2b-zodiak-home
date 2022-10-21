@@ -370,7 +370,7 @@ bigtitle
   font-size: clamp(
     calc(48 / 16 * 1rem),
     calc(1rem + 9vw),
-    calc(138 / 16 * 1rem)
+    calc(168 / 16 * 1rem)
   );
   font-weight: 600;
   line-height: 1.06;
